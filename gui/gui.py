@@ -5,6 +5,8 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QIcon, QFont,QImage,QBrush,QPalette
 from PyQt5.QtCore import QCoreApplication, QSize,Qt
+import time
+
 
 class mainFrame(QMainWindow):
     def __init__(self):
@@ -30,16 +32,21 @@ class mainFrame(QMainWindow):
 ##        pal.setBrush(10, QBrush(sImage))
 ##        self.setPalette(pal)
 
-        ## TEXT ##
-##        label1 = QLabel("sample",self)
-##        label1.setFont(QFont("Times", 10))
-##        label1.resize(label1.sizeHint())
-##        label1.move(20, 120)
+        ## REPLY ##
+        self.Reply1 = QLabel("",self)
+##        self.Reply1.update()    ХЗ
+        self.Reply1.setFont(QFont("Times", 16))
+        self.Reply1.setGeometry(20,30,560,100)
+        self.Reply1.setWordWrap(True)
+        self.Reply1.show()
 
         ## FIELD FOR TEXT ##
         self.line1 = QLineEdit("Введите ваше сообщение",self)
-        self.line1.move(150, 120)
+        self.line1.move(150, 170)
         self.line1.setFixedWidth(320)
+        f = self.line1.font()
+        f.setPointSize(12) # размер шрифта
+        self.line1.setFont(f)
         self.line1.selectAll()
 
         #QToolTip.setFont(QFont('SansSerif', 10))         шрифт подсказок
@@ -50,19 +57,32 @@ class mainFrame(QMainWindow):
         btn = QPushButton('Отправить', self)
         #btn.setToolTip('This is a <b>QPushButton</b> widget')    подсказка
         btn.resize(btn.sizeHint())
-        btn.move(250, 170)
+        btn.move(250, 220)
         btn.clicked.connect(lambda: self.getText(self.line1.text()))
 
         ## SHOW ELEMENTS ##
         self.show()
-        btn.show()
         self.line1.show()
+        btn.show()
 ##        label1.show()
+
+
+    def reply(self, text):
+        self.Reply1.setText(text)
+
+
+
+
 
     def getText(self, text):
         message = text
-        # ... #
-        print(text)
+        ##      проверка текста на корректность    15.04  ##
+        self.reply(message)
+        return message
+
+
+
+
 
     def closeEvent(self,event):
         reply = QMessageBox.question(self, 'Выход', "Вы действительно хотите выйти?",
