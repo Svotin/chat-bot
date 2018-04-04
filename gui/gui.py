@@ -35,7 +35,7 @@ class mainFrame(QMainWindow):
         ## REPLY ##
         self.Reply1 = QLabel("",self)
 ##        self.Reply1.update()    ХЗ
-        self.Reply1.setFont(QFont("Times", 16))
+        self.Reply1.setFont(QFont("Times", 12))
         self.Reply1.setGeometry(20,30,560,100)
         self.Reply1.setWordWrap(True)
         self.Reply1.show()
