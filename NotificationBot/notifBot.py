@@ -14,7 +14,8 @@ def main():
     session = requests.Session()
 
     login =  input("login")
-    password =  getpass.getpass()
+    password = input("pass")
+  #  password =  getpass.getpass()
 
     vk_session = vk_api.VkApi(login, password)
     try:
@@ -36,7 +37,6 @@ def main():
                 ,int(lastDate[4]),int(lastDate[5]))
 
     while(True):
-        time.sleep(60)
         comits = requests.get(url).json()
         try:
             newCommit = comits[0]
@@ -50,6 +50,9 @@ def main():
             message = 'New Git\n\n' + newCommit["commit"]['message']+"\n"+newCommit['html_url']
             vk.messages.send(user_id = 445159253, message = message)
             lastDate = newCommitDate
+        else:
+            print("Нет новых коммитов")
+        time.sleep(60)
 
 
 if __name__ == '__main__':
