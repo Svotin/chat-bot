@@ -27,7 +27,7 @@ def main():
 
     comits = requests.get(url).json()
     try:
-        lastCommit = comits[0]
+        lastCommit = comits[1]
     except Exception as error:
         vk.messages.send(user_id = 445159253, message = "Ваша программа остановилась с ошибкой: '"+ str(error)+ "'")
         exit(0)
