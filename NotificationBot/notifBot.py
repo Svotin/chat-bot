@@ -14,8 +14,7 @@ def main():
     session = requests.Session()
 
     login =  input("login")
-    password = input()
-   # password =  getpass.getpass()
+    password =  getpass.getpass()
 
     vk_session = vk_api.VkApi(login, password)
     try:
